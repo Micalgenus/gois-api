@@ -3,13 +3,16 @@
  * @Class MySQL Database Manager
  */
 class DB {
-  public $hostname;
+  private $hostname;
   private $database;
   private $username;
   private $password;
 
   private $conn;
 
+  /**
+   * @brief DB config파일을 읽고, DB연동 설정 변수를 적용
+   */
   function __construct() {
     // Config 파일을 JSON으로 읽어들임
     $config = json_decode(file_get_contents( dirname(__FILE__) . '/../../config/db.config'), true);
