@@ -4,3 +4,11 @@ RewriteRule ^([^\.]+)$ /index.php?url=$1 [NC,L]
 
 #Security
 RewriteRule ^(config)/(.+)\.config$ ./index.php?url=Error [L,QSA]
+
+# Error Display
+<IfModule mod_php5.c>
+#  php_flag display_startup_errors on
+#  php_flag display_errors on
+#  php_flag html_errors on
+#  php_flag log_errors on
+</IfModule>
