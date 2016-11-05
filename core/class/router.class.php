@@ -65,6 +65,29 @@ class Router {
 
   function configCheck($value) {
   /**
+   * @brief 경로에 해당하는 파일 로드
+   *
+   * @src = 불러올 파일 경로 (string)
+   */
+  function routingSource($src = NULL) {
+    if ($src == NULL) {
+      // 라우팅 테이블에 없을 경우 에러
+      response(404, "Not Found");
+    } else {
+      // 라이팅이 존재 할 경우 파일을 불러옴
+      require_once dirname(__FILE__) . '/../../' . $src;
+    }
+  }
+
+  /**
+   * @brief 불러올 경로를 구해 파일을 불러옴
+   */
+  function Route() {
+    $src = $this->getRoutingString();
+    $this->routingSource($src);
+  }
+
+  /**
    * @brief 인자로 온 값이 config파일에서 리프노드 인지 확인
    *
    * @value 확인할 값
