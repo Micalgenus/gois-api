@@ -46,7 +46,47 @@ class DB {
       echo 'Database Error';
 
       exit -1;
+  /**
+   * @brief Select 쿼리의 가장 베이스
+   *
+   * @table = Select를 하기 위한 테이블 (string)
+   * @option = where를 위한 option (string)
+   * @options = 검색을 위한 옵션 (array)
+   *
+   * @return Query result ((count, data) object)
+   */
+  function SELECT($table = NULL, $option = NULL, $options = NULL) {
+    // table이 없을 경우 SELECT를 할 수 없어야함
+    if ($table == NULL) {
+      response(500, "Database Error");
     }
+
+    $query = "SELECT * FROM " . $table;
+    if ($option != NULL) {
+      // Query option value check
+      if ($options == NULL) {
+        response(500, "Query Error");
+      }
+
+      // Query문 작성
+      $query = $query . " WHERE " . $option;
+      $stmt = $this->conn->prepare($query);
+    }
+
+    try {
+      // Execute query
+      $stmt->execute($options);
+    } catch (PDOException $e) {
+      // Query Error 예외처리
+      response(500, "Query Error");
+    }
+
+    // Reulst object (count, data)
+    $result->count = $stmt->rowCount();
+    $result->data = $stmt->fetchAll();
+
+    // Return tuple data
+    return $result;
   }
 }
 ?>
