@@ -4,6 +4,7 @@
  */
 require_once dirname(__FILE__) . '/class/db.class.php';
 
-$oDB = new DB();
+// DB Connection
+$oDB = new DB($db_config);
 $oDB->Connection();
 ?>

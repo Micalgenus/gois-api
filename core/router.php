@@ -5,7 +5,7 @@
 require_once dirname(__FILE__) . '/class/router.class.php';
 
 // Init Router Class
-$oRouter = new Router();
+$oRouter = new Router($router_config);
 
 // 라우팅 결과를 문자열로 받음
 $src = $oRouter->getRoutingString();
