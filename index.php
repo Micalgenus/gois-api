@@ -20,6 +20,11 @@ require_once dirname(__FILE__) . '/core/config.php';
 require_once dirname(__FILE__) . '/core/db.php';
 
 /**
+ * @brief 권한 설정
+ */
+require_once dirname(__FILE__) . '/core/auth.php';
+
+/**
  * @brief Router 연결 설정
  */
 require_once dirname(__FILE__) . '/core/router.php';
