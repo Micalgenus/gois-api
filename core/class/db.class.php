@@ -21,9 +21,19 @@ class DB {
    *
    * @config_file = 설정 파일의 경로 (string)
    */
-  function __construct() {
+  function __construct($config_file = NULL) {
+    // Config 파일 존재 체크
+    if ($config_file == NULL || file_exists($config_file) == FALSE) {
+      response(500, "Config Error");
+    }
+
     // Config 파일을 JSON으로 읽어들임
-    $config = json_decode(file_get_contents( dirname(__FILE__) . '/../../config/db.config'), true);
+    $config = json_decode(file_get_contents($config_file), true);
+
+    // 올바른 Config 파일인지 확인
+    if ($config == NULL) {
+      response(500, "Config Error");
+    }
 
     // DB 정보 설정
     $this->hostname = $config['hostname'];
@@ -43,9 +53,10 @@ class DB {
     } catch (PDOException $e) {
       // DB Error 예외처리
       //echo 'Connection failed: ' . $e->getMessage();
-      echo 'Database Error';
+      response(500, "Database Error");
+    }
+  }
 
-      exit -1;
   /**
    * @brief Select 쿼리의 가장 베이스
    *

@@ -19,9 +19,19 @@ class Router {
    *
    * @config_file = 설정 파일의 경로 (string)
    */
-  function __construct() {
+  function __construct($config_file = NULL) {
+    // Config 파일 존재 체크
+    if ($config_file == NULL || file_exists($config_file) == FALSE) {
+      response(500, "ConfigDB Error");
+    }
+
     // Config 파일을 JSON으로 읽어들임
-    $this->routing = json_decode(file_get_contents( dirname(__FILE__) . '/../../config/router.config'), true);
+    $this->routing = json_decode(file_get_contents($config_file), true);
+
+    // 올바른 Config 파일인지 확인
+    if ($this->routing == NULL) {
+      response(500, "ConfigDB Error");
+    }
 
     // URL을 주제, 명령, 옵션으로 나눔 (그 외는 버림)
     $url = $_GET['url'];
@@ -63,7 +73,6 @@ class Router {
     }
   }
 
-  function configCheck($value) {
   /**
    * @brief 경로에 해당하는 파일 로드
    *
@@ -92,11 +101,13 @@ class Router {
    *
    * @value 확인할 값
    */
+  function configCheck($value = NULL) {
     // 들어온 값이 문자열로 존재하는지 확인
     // array일 경우 하위 메뉴가 있음, 정보가 부족함
     if (gettype($value) == 'string') {
       return $value;
     }
+
     // Subject가 config에 존재하지 않음
     return NULL;
   }
