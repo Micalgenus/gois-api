@@ -2,10 +2,10 @@
 /**
  * @Class Routing Manager
  *
- * @subject = 라우팅 기준의 최상위 값 
- * @command = 라우팅 기준의 2번째 값
- * @option = 라우팅 기준의 3번째 값
- * @routing = 라우팅 설정 파일의 내용 값
+ * @member subject = 라우팅 기준의 최상위 값 
+ * @member command = 라우팅 기준의 2번째 값
+ * @member option = 라우팅 기준의 3번째 값
+ * @member routing = 라우팅 설정 파일의 내용 값
  */
 class Router {
   private $subject;
@@ -17,7 +17,7 @@ class Router {
   /**
    * @brief config파일을 불러오고, URL을 명령으로 정리함
    *
-   * @config_file = 설정 파일의 경로 (string)
+   * @param config_file = 설정 파일의 경로 (string)
    */
   function __construct($config_file = NULL) {
     // Config 파일 존재 체크
@@ -76,7 +76,7 @@ class Router {
   /**
    * @brief 경로에 해당하는 파일 로드
    *
-   * @src = 불러올 파일 경로 (string)
+   * @param src = 불러올 파일 경로 (string)
    */
   function routingSource($src = NULL) {
     if ($src == NULL) {
@@ -99,7 +99,7 @@ class Router {
   /**
    * @brief 인자로 온 값이 config파일에서 리프노드 인지 확인
    *
-   * @value 확인할 값
+   * @param value 확인할 값
    */
   function configCheck($value = NULL) {
     // 들어온 값이 문자열로 존재하는지 확인

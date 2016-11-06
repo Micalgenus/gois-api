@@ -11,7 +11,7 @@ class Auth {
   /**
    * @brief 관리자 계정 초기화 및 DB 초기화
    *
-   * @DB = DB Object (DB Class)
+   * @param DB = DB Object
    */
   function __construct($DB = NULL) {
     // 변수 초기화
@@ -35,7 +35,7 @@ class Auth {
    */
   function authCheck() {
     $table = "agency";
-    $option = "id = ? and pw = ?";
+    $option = "WHERE id = ? and pw = ?";
     $options = array($this->id, hash('sha512', $this->pw));
     $result = $this->DB->SELECT($table, $option, $options);
 

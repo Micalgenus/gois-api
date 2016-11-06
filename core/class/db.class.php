@@ -2,11 +2,11 @@
 /**
  * @Class MySQL Database Manager
  *
- * @hostname = 서버 주소
- * @database = 데이터베이스 이름
- * @username = 계정 이름
- * @password = 계정 비밀번호
- * @conn = 디비 주체 변수
+ * @member hostname = 서버 주소
+ * @member database = 데이터베이스 이름
+ * @member username = 계정 이름
+ * @member password = 계정 비밀번호
+ * @member conn = 디비 주체 변수
  */
 class DB {
   private $hostname;
@@ -19,7 +19,7 @@ class DB {
   /**
    * @brief DB config파일을 읽고, DB연동 설정 변수를 적용
    *
-   * @config_file = 설정 파일의 경로 (string)
+   * @param config_file = 설정 파일의 경로 (string)
    */
   function __construct($config_file = NULL) {
     // Config 파일 존재 체크
@@ -60,33 +60,30 @@ class DB {
   /**
    * @brief Select 쿼리의 가장 베이스
    *
-   * @table = Select를 하기 위한 테이블 (string)
-   * @option = where를 위한 option (string)
-   * @options = 검색을 위한 옵션 (array)
+   * @param table = Select를 하기 위한 테이블 (string)
+   * @param option = SELEC를 위한 추가 option (string)
+   * @param option_value = 옵션에 필요한 값 (array)
    *
    * @return Query result ((count, data) object)
    */
-  function SELECT($table = NULL, $option = NULL, $options = NULL) {
+  function SELECT($table = NULL, $option = NULL, $option_value = NULL) {
     // table이 없을 경우 SELECT를 할 수 없어야함
     if ($table == NULL) {
-      response(500, "Database Error");
+      response(500, "SELECT Query Error");
     }
 
     $query = "SELECT * FROM " . $table;
-    if ($option != NULL) {
-      // Query option value check
-      if ($options == NULL) {
-        response(500, "Query Error");
-      }
 
+    // 옵션 추가
+    if ($option != NULL) {
       // Query문 작성
-      $query = $query . " WHERE " . $option;
+      $query = $query . " " . $option;
       $stmt = $this->conn->prepare($query);
     }
 
     try {
       // Execute query
-      $stmt->execute($options);
+      $stmt->execute($option_value);
     } catch (PDOException $e) {
       // Query Error 예외처리
       response(500, "Query Error");
@@ -98,6 +95,23 @@ class DB {
 
     // Return tuple data
     return $result;
+  }
+
+  function INSERT($table = NULL, $option = NULL, $option_value = NULL) {
+    if ($table == NULL || $option == NULL || $option_value == NULL) {
+      response(500, "INSERT Query Error");
+    }
+
+    $query = "INSERT INTO " . $table . " " . $option;
+    $stmt = $this->conn->prepare($query);
+
+    try {
+      // Execute query
+      $stmt->execute($option_value);
+    } catch (PDOException $e) {
+      // Query Error 예외처리
+      response(500, "Query Error");
+    }
   }
 }
 ?>
