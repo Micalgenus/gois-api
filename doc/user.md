@@ -11,7 +11,7 @@ POST ` https://api.server/user/create `
 
 ###### POST 인자
 * id : 생성할 계정의 아이디 (20 byte)
-* pw : 생성할 계정의 비밀번호
+* pw : 생성할 계정의 비밀번호 (8byte 이상)
 * name : 사용자 이름 (16 byte)
 * birth : 생일 (YYYY-MM-DD)
 * sex : 성별 (M, F)
@@ -20,7 +20,8 @@ POST ` https://api.server/user/create `
 * 0 : 알 수 없는 오류
 * 100 : 성공
 * 300 : 아이디 중복
-* 3* : 아이디 관련 실패
+* 301 : 아이디 길이 초과
+* 400 : 비밀번호 길이 부족 (8자 미만)
 * 4* : 비밀번호 관련 실패
 * 5* : 이름 관련 실패
 * 6* : 생일 관련 실패
@@ -60,7 +61,7 @@ POST ` https://api.server/user/create `
 ###### POST 인자
 * key : 미리 생성된 비밀키
 * id : 생성할 계정의 아이디 (20 byte)
-* pw : 생성할 계정의 비밀번호
+* pw : 생성할 계정의 비밀번호 (8byte 이상)
 * name : 사용자 이름 (16 byte)
 * birth : 생일 (YYYY-MM-DD)
 * sex : 성별 (M, F)
@@ -70,7 +71,9 @@ POST ` https://api.server/user/create `
 * 100 : 성공
 * 2* : 비밀키 관련 실패
 * 300 : 아이디 중복
+* 301 : 아이디 길이 초과
 * 3* : 아이디 관련 실패
+* 400 : 비밀번호 길이 부족 (8자 미만)
 * 4* : 비밀번호 관련 실패
 * 5* : 이름 관련 실패
 * 6* : 생일 관련 실패
