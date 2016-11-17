@@ -88,7 +88,7 @@ POST ` https://api.server/user/create `
 
 ------
 
-#### 계정 확인
+#### 계정 확인 (로그인)
 POST ` https://api.server/user/login `
 
 ###### POST 인자
@@ -106,3 +106,24 @@ POST ` https://api.server/user/login `
 
 ###### 출력 결과 (JSON)
 * status : 실행 결과
+
+------
+
+#### 계정 정보 출력
+POST ` https://api.server/user/select `
+
+###### POST 인자
+* id : 계정의 아이디
+
+###### Status Code
+* 0 : 알 수 없는 오류
+* 100 : 성공
+* 200 : 아이디를 입력 하지 않음
+* 201 : 아이디가 존재 하지 않음
+* 999 : 확인 권한 없음
+
+###### 출력 결과 (JSON)
+* status : 실행 결과
+* name : 이름
+* birth : 생일
+* sex : 성별
