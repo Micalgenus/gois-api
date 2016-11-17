@@ -3,7 +3,9 @@ RewriteEngine On
 RewriteRule ^([^\.]+)$ /index.php?url=$1 [NC,L]
 
 #Security
-RewriteRule ^(config)/(.+)\.config$ ./index.php?url=Error [L,QSA]
+RewriteRule ^(config)/* ./index.php?url=Error [L,QSA]
+RewriteRule ^(core)/* ./index.php?url=Error [L,QSA]
+RewriteRule ^(src)/* ./index.php?url=Error [L,QSA]
 
 # Error Display
 <IfModule mod_php5.c>

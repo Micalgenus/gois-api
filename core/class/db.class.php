@@ -113,5 +113,11 @@ class DB {
       response(500, "Query Error");
     }
   }
+
+  function UPDATE($table = NULL, $keys = NULL, $values = NULL, $option = NULL, $option_value = NULL) {
+    if ($table == NULL || $keys = NULL || $values == NULL || $option == NULL || $option_value == NULL) {
+      response(500, "UPDATE Query Error");
+    }
+  }
 }
 ?>

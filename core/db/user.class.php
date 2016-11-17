@@ -6,6 +6,7 @@
  */
 class UserDatabase {
   private $DB;
+
   /**
    * @brief DB 초기화
    *
@@ -22,6 +23,7 @@ class UserDatabase {
   }
 
   function GetUserInfoByKey($key = NULL) {
+
     if ($key == NULL) {
       response(500, "Get User Key Error");
     }
@@ -30,11 +32,11 @@ class UserDatabase {
     $option = "WHERE u_key = ?";
     $options = array($key);
     $result = $this->DB->SELECT($table, $option, $options);
-
     return $result;
   }
 
   function GetUserInfoById($id = NULL) {
+
     if ($id == NULL) {
       response(500, "Get User ID Error");
     }
@@ -43,12 +45,12 @@ class UserDatabase {
     $option = "WHERE id = ?";
     $options = array($id);
     $result = $this->DB->SELECT($table, $option, $options);
-
     return $result;
   }
 
   function GetUserInfoByName($name = NULL) {
-    if ($id == NULL) {
+
+    if ($name == NULL) {
       response(500, "Get User Name Error");
     }
 
@@ -56,39 +58,58 @@ class UserDatabase {
     $option = "WHERE name = ?";
     $options = array($name);
     $result = $this->DB->SELECT($table, $option, $options);
-
     return $result;
   }
 
-  function UpdateUserData($key = NULL, $id = NULL, $pw = NULL, $name = NULL, $birth = NULL, $sex = NULL) {
-    if ($key == NULL) {
+  function UserLogin($id = NULL, $pw = NULL) {
+
+    if ($id == NULL || $pw == NULL) {
+      response(500, "User Login Error");
+    }
+
+    $table = "user";
+    $option = "WHERE id = ? and pw = ?";
+    $options = array($id, hash('sha512', $pw));
+    $result = $this->DB->SELECT($table, $option, $options);
+    
+    if ($result->count == 0) return FALSE;
+
+    return TRUE;
+  }
+
+  function UpdateUserData($ukey = NULL, $id = NULL, $pw = NULL, $name = NULL, $birth = NULL, $sex = NULL) {
+
+    if ($ukey == NULL) {
       response(500, "User Update Key Error");
+    }
+
+    // key가 존재하지 않음
+    if ($this->GetUserInfoByKey($ukey)->count == 0) {
+      json_return(200);
     }
   }
 
-  function CreateUser($id = NULL, $pw = NULL, $name = NULL, $birth= NULL, $sex = NULL, $agency = NULL) {
-    if ($this->GetUserInfoById($id)->count != 0) {
-      json_return(300);
-    }
+  function CreateUser($id = NULL, $pw = NULL, $name = NULL, $birth= NULL, $sex = NULL, $agency = FALSE) {
 
-    if (strlen($id) > 20) {
-      json_return(301);
-    }
-
+    // 키 생성
     do {
       $key = str_pad(rand(1, 999999999), 9, "0", STR_PAD_LEFT) . str_pad(rand(1, 999999999), 9, "0", STR_PAD_LEFT);
     } while ($this->GetUserInfoById($key)->count != 0);
 
-    $this->DB->INSERT('user', 'VALUES(?, ?, ?, ?, ?, ?)', array($key, $id, hash('sha512', $pw), $name, $birth, $sex));
+    $this->DB->INSERT('user', 'VALUES(?, ?, ?, ?, ?, ?, ?)', array($key, $id, hash('sha512', $pw), $name, $birth, $sex, $agency));
     
     return $key;
   }
 
   function CreateUserByAgency($name = NULL, $birth = NULL, $sex = NULL) {
-    $id = rand();
+    
+    do {
+      $id = rand();
+    } while ($this->GetUserInfoById($id)->count != 0);
+
     $pw = rand();
 
-    return $this->CreateUser($id, $pw, $name, $birth, $sex);
+    return $this->CreateUser($id, $pw, $name, $birth, $sex, TRUE);
   }
 }
 ?>
