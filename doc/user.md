@@ -6,7 +6,7 @@
 
 ------
 
-#### 계정 생성 (회원가입)
+### 계정 생성 (회원가입)
 POST ` https://api.server/user/create `
 
 ###### POST 인자
@@ -35,7 +35,7 @@ POST ` https://api.server/user/create `
 
 ======
 
-#### 계정 생성 (키 생성)
+### 계정 생성 (키 생성)
 POST ` https://api.server/user/create `
 
 ###### POST 인자
@@ -57,7 +57,7 @@ POST ` https://api.server/user/create `
 
 ======
 
-#### 계정 생성 (기존 키를 이용한 생성)
+### 계정 생성 (기존 키를 이용한 생성)
 POST ` https://api.server/user/create `
 
 ###### POST 인자
@@ -88,7 +88,7 @@ POST ` https://api.server/user/create `
 
 ------
 
-#### 계정 확인 (로그인)
+### 계정 확인 (로그인)
 POST ` https://api.server/user/login `
 
 ###### POST 인자
@@ -109,7 +109,7 @@ POST ` https://api.server/user/login `
 
 ------
 
-#### 계정 정보 출력
+### 계정 정보 출력
 POST ` https://api.server/user/select `
 
 ###### POST 인자
