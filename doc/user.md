@@ -132,6 +132,7 @@ POST ` https://api.server/user/select `
 
 ###### 출력 결과 (JSON)
 * status : 실행 결과
+* key : 사용자 비밀키
 * name : 이름
 * birth : 생일
 * sex : 성별
