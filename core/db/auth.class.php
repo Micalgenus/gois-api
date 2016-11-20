@@ -23,25 +23,42 @@ class Auth {
     if ($this->DB == NULL) {
       response(500, "DB Error");
     }
+  }
+  
+  function GetAdminInfoById($id = NULL) {
 
-    // 입력 확인
-    if (empty($this->id) || empty($this->pw)) {
-      json_return(999);
+    if ($id == NULL) {
+      response(500, "Get ADMIN ID Error");
     }
+
+    $table = "agency";
+    $option = "WHERE id = ?";
+    $options = array($id);
+    $result = $this->DB->SELECT($table, $option, $options);
+    
+    return $result;
   }
 
   /**
    * @brief 권한이 있는 계정인지 판단
    */
   function authCheck() {
+    
+    // 입력 확인
+    if (empty($this->id) || empty($this->pw)) {
+      json_return(999);
+    }
+
     $table = "agency";
     $option = "WHERE id = ? and pw = ?";
     $options = array($this->id, hash('sha512', $this->pw));
     $result = $this->DB->SELECT($table, $option, $options);
 
     if ($result->count != 1) {
-      response(500, "auth Error");
+      return FALSE;
     }
+
+    return TRUE;
   }
 }
 ?>

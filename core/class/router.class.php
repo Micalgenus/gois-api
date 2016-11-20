@@ -14,6 +14,8 @@ class Router {
 
   private $routing;
 
+  private $src;
+
   /**
    * @brief config파일을 불러오고, URL을 명령으로 정리함
    *
@@ -44,6 +46,14 @@ class Router {
     $this->subject = strtoupper($this->subject);
     $this->command = strtoupper($this->command);
     $this->option = strtoupper($this->option);
+  }
+
+  function getSrc() {
+    $src->subject = $this->subject;
+    $src->command = $this->command;
+    $src->option = $this->option;
+
+    return $src;
   }
 
   /**
@@ -78,13 +88,13 @@ class Router {
    *
    * @param src = 불러올 파일 경로 (string)
    */
-  function routingSource($src = NULL) {
-    if ($src == NULL) {
+  function routingSource() {
+    if ($this->src == NULL) {
       // 라우팅 테이블에 없을 경우 에러
       response(404, "Not Found");
     } else {
       // 라이팅이 존재 할 경우 파일을 불러옴
-      require_once dirname(__FILE__) . '/../../' . $src;
+      require_once dirname(__FILE__) . '/../../' . $this->src;
     }
   }
 
@@ -92,8 +102,7 @@ class Router {
    * @brief 불러올 경로를 구해 파일을 불러옴
    */
   function Route() {
-    $src = $this->getRoutingString();
-    $this->routingSource($src);
+    $this->src = $this->getRoutingString();
   }
 
   /**

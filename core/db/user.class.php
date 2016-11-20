@@ -61,6 +61,19 @@ class UserDatabase {
     return $result;
   }
 
+  function GetUserInfoByNickname($nickname = NULL) {
+
+    if ($nickname == NULL) {
+      response(500, "Get User Nickname Error");
+    }
+
+    $table = "user";
+    $option = "WHERE nickname = ?";
+    $options = array($nickname);
+    $result = $this->DB->SELECT($table, $option, $options);
+    return $result;
+  }
+
   function UserLogin($id = NULL, $pw = NULL) {
 
     if ($id == NULL || $pw == NULL) {
@@ -89,27 +102,37 @@ class UserDatabase {
     }
   }
 
-  function CreateUser($id = NULL, $pw = NULL, $name = NULL, $birth= NULL, $sex = NULL, $agency = FALSE) {
+  function CreateUser($id = NULL, $pw = NULL, $name = NULL, $nickname = NULL, $birth= NULL, $sex = NULL, $agency = FALSE) {
+    if ($id == NULL || $pw == NULL || $name == NULL || $nickname == NULL || $birth == NULL || $sex == NULL) {
+      response(500, "Create User Error");
+    }
 
     // 키 생성
     do {
       $key = str_pad(rand(1, 999999999), 9, "0", STR_PAD_LEFT) . str_pad(rand(1, 999999999), 9, "0", STR_PAD_LEFT);
     } while ($this->GetUserInfoById($key)->count != 0);
 
-    $this->DB->INSERT('user', 'VALUES(?, ?, ?, ?, ?, ?, ?)', array($key, $id, hash('sha512', $pw), $name, $birth, $sex, $agency));
+    $this->DB->INSERT('user', 'VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)', array($key, $id, hash('sha512', $pw), $name, $birth, $sex, $agency, $nickname, 0));
     
     return $key;
   }
 
   function CreateUserByAgency($name = NULL, $birth = NULL, $sex = NULL) {
-    
+    if ($name == NULL || $birth == NULL || $sex == NULL) {
+      response(500, "Create User By Agency Error");
+    }
+
     do {
       $id = rand();
     } while ($this->GetUserInfoById($id)->count != 0);
 
+    do {
+      $nickname = rand();
+    } while ($this->GetUserInfoByNickname($nickname)->count != 0);
+
     $pw = rand();
 
-    return $this->CreateUser($id, $pw, $name, $birth, $sex, TRUE);
+    return $this->CreateUser($id, $pw, $name, $nickname, $birth, $sex, TURE);
   }
 }
 ?>

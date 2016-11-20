@@ -29,4 +29,9 @@ require_once dirname(__FILE__) . '/core/auth.php';
  */
 require_once dirname(__FILE__) . '/core/router.php';
 
+/**
+ * @brief 서비스 시작
+ */
+require_once dirname(__FILE__) . '/core/service.php';
+
 ?>

@@ -86,7 +86,7 @@ class DB {
       $stmt->execute($option_value);
     } catch (PDOException $e) {
       // Query Error 예외처리
-      response(500, "Query Error");
+      response(500, "Select Exception");
     }
 
     // Reulst object (count, data)
@@ -110,12 +110,13 @@ class DB {
       $stmt->execute($option_value);
     } catch (PDOException $e) {
       // Query Error 예외처리
-      response(500, "Query Error");
+      //echo 'Connection failed: ' . $e->getMessage();
+      response(500, "Insert Exception");
     }
   }
 
   function UPDATE($table = NULL, $keys = NULL, $values = NULL, $option = NULL, $option_value = NULL) {
-    if ($table == NULL || $keys = NULL || $values == NULL || $option == NULL || $option_value == NULL) {
+    if ($table == NULL || $keys == NULL || $values == NULL || $option == NULL || $option_value == NULL) {
       response(500, "UPDATE Query Error");
     }
   }

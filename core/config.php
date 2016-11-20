@@ -24,14 +24,15 @@ function response($status, $msg) {
  * @brief 결과를 JSON데이터로 반환
  */
 function json_return($status = NULL, $obj = NULL) {
-  if ($status == NULL) {
+  if ($status === NULL) {
     response(500, "JSON Return Error");
   }
 
   $result = $obj;
   $result->status = $status;
 
-  response(200, json_encode($result));
+  // JSON_UNESCAPED_UNICODE -> 한글 인코딩
+  response(200, json_encode($result, JSON_UNESCAPED_UNICODE));
 }
 
 ?>

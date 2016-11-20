@@ -7,6 +7,4 @@ require_once dirname(__FILE__) . '/class/router.class.php';
 // Init Router Class
 $oRouter = new Router($router_config);
 
-// 라우팅
-$oRouter->Route();
 ?>
