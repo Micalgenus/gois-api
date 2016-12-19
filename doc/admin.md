@@ -37,7 +37,7 @@ POST ` https://api.server/admin/list `
 ###### 출력 결과 (JSON)
 * status : 실행 결과
 * size : 계정 갯수
-* list : array 형태의 {id, name, sex}
+* list : array 형태의 {id, name, sex, birth}
 
 ------
 
