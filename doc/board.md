@@ -44,3 +44,24 @@ POST ` https://api.server/board/list `
 * status : 실행 결과
 * size : 결과 갯수
 * list : array 형태의 {key, title, writer, date, hits}
+
+------
+
+### 게시판 정보 출력
+POST ` https://api.server/board/detail `
+
+###### POST 
+* key : 문서 번호
+
+###### Status Code
+* 0 : 알 수 없는 오류
+* 100 : 성공
+* 999 : 생성 권한 없음
+
+###### 출력 결과 (JSON)
+* status : 실행 결과
+* title : 제목
+* writer : 작성자
+* date : 작성 날짜
+* hits : 조회수
+* contents : 
