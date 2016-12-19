@@ -38,3 +38,20 @@ POST ` https://api.server/admin/list `
 * status : 실행 결과
 * size : 계정 갯수
 * list : array 형태의 {id, name, sex}
+
+------
+
+### 계정 확인 (로그인)
+POST ` https://api.server/admin/info `
+
+###### POST 인자
+* admin_id : 권한이 있는 관리자의 아이디
+
+###### Status Code
+* 0 : 알 수 없는 오류
+* 100 : 성공
+
+###### 출력 결과 (JSON)
+* status : 실행 결과
+* key : 관리자 키
+* address : 주소
