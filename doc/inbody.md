@@ -20,6 +20,7 @@ POST ` https://api.server/info/insert `
 * mineral : 무기질
 * body_fat : 체지방
 * weight : 체중
+* height : 키
 * s_muscle : 골격근량
 * bmi : BMI
 * p_body_fat : 체지방률
@@ -41,6 +42,7 @@ POST ` https://api.server/info/insert `
 * 211 : bmi 없음
 * 212 : p_body_fat 없음
 * 213 : waist_hip 없음
+* 214 : height 없음
 * 301 : ID or Key가 DB에 존재하지 않음
 * 999 : 생성 권한 없음
 
@@ -92,6 +94,7 @@ POST ` https://api.server/info/detail `
 * mineral : 무기질
 * body_fat : 체지방
 * weight : 체중
+* height : 체중
 * s_muscle : 골격근량
 * bmi : BMI
 * p_body_fat : 체지방률
