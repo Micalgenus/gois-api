@@ -10,3 +10,5 @@ GOIS프로젝트에서 DB연동을 위한 서버
 > INBODY: <https://github.com/Micalgenus/gois-api/blob/master/doc/inbody.md>
 
 > BOARD: <https://github.com/Micalgenus/gois-api/blob/master/doc/board.md>
+
+> RANK: <https://github.com/Micalgenus/gois-api/blob/master/doc/rank.md>
