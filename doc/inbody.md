@@ -41,7 +41,7 @@ POST ` https://api.server/info/insert `
 * 211 : bmi 없음
 * 212 : p_body_fat 없음
 * 213 : waist_hip 없음
-* 301 : ID 존재하지 않음
+* 301 : ID or Key가 DB에 존재하지 않음
 * 999 : 생성 권한 없음
 
 ###### 출력 결과 (JSON)
