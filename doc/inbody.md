@@ -23,7 +23,6 @@ POST ` https://api.server/info/insert `
 * bmi : BMI
 * p_body_fat : 체지방률
 * waist_hip : 복부지방률
-* visceral_fat : 비만 정도률 (Visceral Fat Area)
 
 ###### Status Code
 * 0 : 알 수 없는 오류
@@ -41,7 +40,6 @@ POST ` https://api.server/info/insert `
 * 211 : bmi 없음
 * 212 : p_body_fat 없음
 * 213 : waist_hip 없음
-* 214 : visceral_fat 없음
 * 999 : 생성 권한 없음
 
 ###### 출력 결과 (JSON)
