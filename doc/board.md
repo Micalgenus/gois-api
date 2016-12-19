@@ -11,7 +11,6 @@ POST ` https://api.server/board/insert `
 
 ###### POST 인자
 * id : 사용자 ID
-* wdate : 작성 날짜 (YYYY-MM-DD HH:mm:SS)
 * title : 제목 (256byte)
 * contents : 내용 (Text)
 
