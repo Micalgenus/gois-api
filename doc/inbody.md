@@ -63,4 +63,5 @@ POST ` https://api.server/info/select `
 
 ###### 출력 결과 (JSON)
 * status : 실행 결과
+* size : 결과 갯수
 * list : array 형태의 {key, date}
