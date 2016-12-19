@@ -67,3 +67,23 @@ POST ` https://api.server/board/detail `
 * date : 작성 날짜
 * hits : 조회수
 * contents : 
+
+------
+
+### 게시판 정보 출력
+POST ` https://api.server/board/delete `
+
+###### POST 인자
+* key : 문서 번호
+* id : 로그인된 ID
+
+###### Status Code
+* 0 : 알 수 없는 오류
+* 100 : 성공
+* 200 : 키 입력 X
+* 300 : ID 입력 X
+* 301 : ID가 존재하지 않음
+* 999 : 생성 권한 없음
+
+###### 출력 결과 (JSON)
+* status : 실행 결과
