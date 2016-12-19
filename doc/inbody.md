@@ -94,7 +94,7 @@ POST ` https://api.server/info/detail `
 * mineral : 무기질
 * body_fat : 체지방
 * weight : 체중
-* height : 체중
+* height : 키
 * s_muscle : 골격근량
 * bmi : BMI
 * p_body_fat : 체지방률
