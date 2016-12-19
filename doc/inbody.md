@@ -57,6 +57,8 @@ POST ` https://api.server/info/select `
 ###### Status Code
 * 0 : 알 수 없는 오류
 * 100 : 성공
+* 201 : ID 입력 안함
+* 301 : ID 없음
 * 999 : 조회 권한 없음
 
 ###### 출력 결과 (JSON)
