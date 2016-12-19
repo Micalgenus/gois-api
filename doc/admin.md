@@ -41,7 +41,7 @@ POST ` https://api.server/admin/list `
 
 ------
 
-### 계정 확인 (로그인)
+### 관리자 계정 정보 출력
 POST ` https://api.server/admin/info `
 
 ###### POST 인자
