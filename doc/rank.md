@@ -7,7 +7,7 @@
 ------
 
 ### 소셜 랭크
-POST ` https://api.server/board/insert `
+POST ` https://api.server/rank/social `
 
 ###### POST 인자
 * 인자 없음
