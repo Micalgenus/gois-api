@@ -12,6 +12,7 @@ POST ` https://api.server/info/insert `
 ###### POST 인자
 * agency : 기관 키
 * id : 사용자 ID
+* key : 사용자 KEY
 * mdate : 검사한 날짜 (YYYY-MM-DD HH:mm:SS)
 * wicell : 세포 내 수분
 * wocell : 세포 외 수분
