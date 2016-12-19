@@ -31,6 +31,10 @@ POST ` https://api.server/admin/list `
 ###### Status Code
 * 0 : 알 수 없는 오류
 * 100 : 성공
+* 200 : id 입력 하지 않음
+* 201 : 아이디가 존재 하지 않음
 
 ###### 출력 결과 (JSON)
 * status : 실행 결과
+* size : 계정 갯수
+* list : array 형태의 {id, name, sex}
