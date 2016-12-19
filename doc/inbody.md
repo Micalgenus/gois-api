@@ -65,3 +65,19 @@ POST ` https://api.server/info/select `
 * status : 실행 결과
 * size : 결과 갯수
 * list : array 형태의 {key, date}
+
+------
+
+### 인바디 정보 
+POST ` https://api.server/info/detail `
+
+###### POST 인자
+* key : 검색할 인바디 키
+
+###### Status Code
+* 0 : 알 수 없는 오류
+* 100 : 성공
+* 999 : 조회 권한 없음
+
+###### 출력 결과 (JSON)
+* status : 실행 결과
