@@ -12,3 +12,5 @@ GOIS프로젝트에서 DB연동을 위한 서버
 > BOARD: <https://github.com/Micalgenus/gois-api/blob/master/doc/board.md>
 
 > RANK: <https://github.com/Micalgenus/gois-api/blob/master/doc/rank.md>
+
+> RANK: <https://github.com/Micalgenus/gois-api/blob/master/doc/group.md>
