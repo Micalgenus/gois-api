@@ -62,6 +62,7 @@ POST ` https://api.server/board/detail `
 * status : 실행 결과
 * title : 제목
 * writer : 작성자
+* id : 작성자 ID
 * date : 작성 날짜
 * hits : 조회수
 * contents : 내용
