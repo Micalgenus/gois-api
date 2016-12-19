@@ -22,3 +22,18 @@ POST ` https://api.server/admin/login `
 
 ###### 출력 결과 (JSON)
 * status : 실행 결과
+
+------
+
+### 사용자 계정 목록
+POST ` https://api.server/admin/list `
+
+###### POST 인자
+* 없음
+
+###### Status Code
+* 0 : 알 수 없는 오류
+* 100 : 성공
+
+###### 출력 결과 (JSON)
+* status : 실행 결과
