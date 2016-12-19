@@ -28,6 +28,20 @@ POST ` https://api.server/info/insert `
 ###### Status Code
 * 0 : 알 수 없는 오류
 * 100 : 성공
+* 201 : agency 없음
+* 202 : ukey 없음
+* 203 : mdate 없음
+* 204 : wicell 없음
+* 205 : wocell 없음
+* 206 : protein 없음
+* 207 : mineral 없음
+* 208 : body_fat 없음
+* 209 : weight 없음
+* 210 : s_muscle 없음
+* 211 : bmi 없음
+* 212 : p_body_fat 없음
+* 213 : waist_hip 없음
+* 214 : visceral_fat 없음
 * 999 : 생성 권한 없음
 
 ###### 출력 결과 (JSON)
