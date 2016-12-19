@@ -1,16 +1,13 @@
 ## ADMIN
 
-### 모든 명령에 POST 데이터로 포함되어야함(권한)
-* admin_id : 권한이 있는 관리자의 아이디
-* admin_pw : 권한이 있는 관리자의 비밀번호
-
 ------
 
 ### 계정 확인 (로그인)
 POST ` https://api.server/admin/login `
 
 ###### POST 인자
-* 없음
+* admin_id : 권한이 있는 관리자의 아이디
+* admin_pw : 권한이 있는 관리자의 비밀번호
 
 ###### Status Code
 * 0 : 알 수 없는 오류
@@ -29,7 +26,7 @@ POST ` https://api.server/admin/login `
 POST ` https://api.server/admin/list `
 
 ###### POST 인자
-* 없음
+* admin_id : 권한이 있는 관리자의 아이디
 
 ###### Status Code
 * 0 : 알 수 없는 오류
