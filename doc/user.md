@@ -148,3 +148,4 @@ POST ` https://api.server/user/select `
 * name : 이름
 * birth : 생일
 * sex : 성별
+* s_point : 소셜 점수
