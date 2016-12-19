@@ -32,7 +32,7 @@ POST ` https://api.server/board/insert `
 ### 게시판 리스트 출력
 POST ` https://api.server/board/list `
 
-###### POST 
+###### POST 인자
 * 인자 없음
 
 ###### Status Code
@@ -50,7 +50,7 @@ POST ` https://api.server/board/list `
 ### 게시판 정보 출력
 POST ` https://api.server/board/detail `
 
-###### POST 
+###### POST 인자
 * key : 문서 번호
 
 ###### Status Code
