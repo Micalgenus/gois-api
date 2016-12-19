@@ -19,7 +19,7 @@ POST ` https://api.server/group/join `
 * 201 : id 입력 X
 * 202 : name 입력 X
 * 301 : 존재하지 않는 id
-* 401 : 그룹에 이미 가입합
+* 401 : 그룹에 이미 가입함
 
 ###### 출력 결과 (JSON)
 * status : 실행 결과
