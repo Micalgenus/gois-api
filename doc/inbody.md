@@ -29,7 +29,7 @@ POST ` https://api.server/info/insert `
 * 0 : 알 수 없는 오류
 * 100 : 성공
 * 201 : agency 없음
-* 202 : id 없음
+* 202 : id and key 없음
 * 203 : mdate 없음
 * 204 : wicell 없음
 * 205 : wocell 없음
