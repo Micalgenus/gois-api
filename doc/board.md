@@ -68,7 +68,7 @@ POST ` https://api.server/board/detail `
 
 ------
 
-### 게시판 정보 출력
+### 게시판 정보 삭제
 POST ` https://api.server/board/delete `
 
 ###### POST 인자
