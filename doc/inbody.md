@@ -52,7 +52,7 @@ POST ` https://api.server/info/insert `
 POST ` https://api.server/info/select `
 
 ###### POST 인자
-
+* id : 검색할 아이디
 
 ###### Status Code
 * 0 : 알 수 없는 오류
