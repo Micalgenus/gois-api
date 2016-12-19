@@ -27,3 +27,21 @@ POST ` https://api.server/board/insert `
 
 ###### 출력 결과 (JSON)
 * status : 실행 결과
+
+------
+
+### 게시판 리스트 출력
+POST ` https://api.server/board/list `
+
+###### POST 
+* 인자 없음
+
+###### Status Code
+* 0 : 알 수 없는 오류
+* 100 : 성공
+* 999 : 생성 권한 없음
+
+###### 출력 결과 (JSON)
+* status : 실행 결과
+* size : 결과 갯수
+* list : array 형태의 {key, title, writer, date, hits}
