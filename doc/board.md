@@ -22,7 +22,6 @@ POST ` https://api.server/board/insert `
 * 300 : 날짜 입력 하지 않음
 * 400 : 제목 입력 하지 않음
 * 500 : 내용 입력 하지 않음
-* 999 : 생성 권한 없음
 
 ###### 출력 결과 (JSON)
 * status : 실행 결과
@@ -58,7 +57,6 @@ POST ` https://api.server/board/detail `
 * 100 : 성공
 * 200 : 키가 존재하지 않음
 * 201 : 문서가 존재하지 않음
-* 999 : 생성 권한 없음
 
 ###### 출력 결과 (JSON)
 * status : 실행 결과
@@ -66,7 +64,7 @@ POST ` https://api.server/board/detail `
 * writer : 작성자
 * date : 작성 날짜
 * hits : 조회수
-* contents : 
+* contents : 내용
 
 ------
 
@@ -83,7 +81,8 @@ POST ` https://api.server/board/delete `
 * 200 : 키 입력 X
 * 300 : ID 입력 X
 * 301 : ID가 존재하지 않음
-* 999 : 생성 권한 없음
+* 302 : 다른 ID임
+* 999 : 삭제 권한 없음
 
 ###### 출력 결과 (JSON)
 * status : 실행 결과
