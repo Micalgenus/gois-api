@@ -48,7 +48,7 @@ POST ` https://api.server/info/insert `
 
 ------
 
-### 인바디 정보 
+### 인바디 리스트
 POST ` https://api.server/info/select `
 
 ###### POST 인자
