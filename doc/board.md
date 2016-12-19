@@ -56,6 +56,8 @@ POST ` https://api.server/board/detail `
 ###### Status Code
 * 0 : 알 수 없는 오류
 * 100 : 성공
+* 200 : 키가 존재하지 않음
+* 201 : 문서가 존재하지 않음
 * 999 : 생성 권한 없음
 
 ###### 출력 결과 (JSON)
