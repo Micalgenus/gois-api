@@ -11,7 +11,7 @@ POST ` https://api.server/info/insert `
 
 ###### POST 인자
 * agency : 기관 키
-* ukey : 사용자 키
+* id : 사용자 ID
 * mdate : 검사한 날짜 (YYYY-MM-DD)
 * wicell : 세포 내 수분
 * wocell : 세포 외 수분
@@ -28,7 +28,7 @@ POST ` https://api.server/info/insert `
 * 0 : 알 수 없는 오류
 * 100 : 성공
 * 201 : agency 없음
-* 202 : ukey 없음
+* 202 : id 없음
 * 203 : mdate 없음
 * 204 : wicell 없음
 * 205 : wocell 없음
@@ -41,6 +41,22 @@ POST ` https://api.server/info/insert `
 * 212 : p_body_fat 없음
 * 213 : waist_hip 없음
 * 999 : 생성 권한 없음
+
+###### 출력 결과 (JSON)
+* status : 실행 결과
+
+------
+
+### 인바디 정보 
+POST ` https://api.server/info/select `
+
+###### POST 인자
+
+
+###### Status Code
+* 0 : 알 수 없는 오류
+* 100 : 성공
+* 999 : 조회 권한 없음
 
 ###### 출력 결과 (JSON)
 * status : 실행 결과
