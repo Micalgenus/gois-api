@@ -61,3 +61,4 @@ POST ` https://api.server/info/select `
 
 ###### 출력 결과 (JSON)
 * status : 실행 결과
+* list : array 형태로 {key, date} 반환
