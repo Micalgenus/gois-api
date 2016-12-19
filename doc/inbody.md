@@ -31,7 +31,6 @@ POST ` https://api.server/info/insert `
 * 100 : 성공
 * 201 : agency 없음
 * 202 : id and key 없음
-* 203 : mdate 없음
 * 204 : wicell 없음
 * 205 : wocell 없음
 * 206 : protein 없음
@@ -99,3 +98,19 @@ POST ` https://api.server/info/detail `
 * bmi : BMI
 * p_body_fat : 체지방률
 * waist_hip : 복부지방률
+
+------
+
+### 인바디 점수 등록 
+POST ` https://api.server/info/point `
+
+###### POST 인자
+* id or key : 추가할 사용자
+* point : 점수
+
+###### Status Code
+* 0 : 알 수 없는 오류
+* 100 : 성공
+
+###### 출력 결과 (JSON)
+* status : 실행 결과
