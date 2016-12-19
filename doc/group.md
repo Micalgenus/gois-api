@@ -18,6 +18,7 @@ POST ` https://api.server/group/join `
 * 100 : 성공
 * 201 : id 입력 X
 * 202 : name 입력 X
+* 301 : 존재하지 않는 id
 
 ###### 출력 결과 (JSON)
 * status : 실행 결과
