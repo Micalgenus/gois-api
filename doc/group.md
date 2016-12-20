@@ -15,7 +15,8 @@ POST ` https://api.server/group/join `
 
 ###### Status Code
 * 0 : 알 수 없는 오류
-* 100 : 성공
+* 100 : 성공 (참가)
+* 101 : 성공 (생성)
 * 201 : id 입력 X
 * 202 : name 입력 X
 * 301 : 존재하지 않는 id
