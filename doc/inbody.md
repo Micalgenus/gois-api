@@ -85,6 +85,7 @@ POST ` https://api.server/info/detail `
 
 ###### 출력 결과 (JSON)
 * status : 실행 결과
+* akey : 기관 코드
 * agency : 기관명
 * mdate : 검사 날짜
 * wicell : 세포 내 수분
