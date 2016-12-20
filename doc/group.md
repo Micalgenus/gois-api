@@ -43,3 +43,22 @@ POST ` https://api.server/group/mylist `
 * status : 실행 결과
 * size : 결과 갯수
 * list : array 형태의 {key, name}
+
+------
+
+### 그룹 멤버
+POST ` https://api.server/group/member `
+
+###### POST 인자
+* name : 그룹 이름
+
+###### Status Code
+* 0 : 알 수 없는 오류
+* 100 : 성공
+* 201 : name 입력 X
+* 301 : 존재하지 않는 name
+
+###### 출력 결과 (JSON)
+* status : 실행 결과
+* size : 결과 갯수
+* list : array 형태의 {key, id, nickname}
