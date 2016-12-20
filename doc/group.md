@@ -62,3 +62,23 @@ POST ` https://api.server/group/member `
 * status : 실행 결과
 * size : 결과 갯수
 * list : array 형태의 {key, id, nickname}
+
+------
+
+### 그룹 탈퇴
+POST ` https://api.server/group/joinout `
+
+###### POST 인자
+* name : 그룹 이름
+* id : 사용자 ID
+
+###### Status Code
+* 0 : 알 수 없는 오류
+* 100 : 성공
+* 201 : id 입력 X
+* 202 : name 입력 X
+* 301 : 존재하지 않는 id
+* 401 : 그룹의 멤버가 아님
+
+###### 출력 결과 (JSON)
+* status : 실행 결과
