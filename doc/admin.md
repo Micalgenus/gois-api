@@ -55,3 +55,5 @@ POST ` https://api.server/admin/info `
 * status : 실행 결과
 * key : 관리자 키
 * address : 주소
+* latitude : 위도
+* longitude : 경도
