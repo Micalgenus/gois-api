@@ -50,13 +50,13 @@ POST ` https://api.server/group/mylist `
 POST ` https://api.server/group/member `
 
 ###### POST 인자
-* name : 그룹 이름
+* key : 그룹 키
 
 ###### Status Code
 * 0 : 알 수 없는 오류
 * 100 : 성공
-* 201 : name 입력 X
-* 301 : 존재하지 않는 name
+* 201 : key 입력 X
+* 301 : 존재하지 않는 key
 
 ###### 출력 결과 (JSON)
 * status : 실행 결과
