@@ -23,3 +23,22 @@ POST ` https://api.server/group/join `
 
 ###### 출력 결과 (JSON)
 * status : 실행 결과
+
+------
+
+### 자신의 그룹 리스트
+POST ` https://api.server/group/mylist `
+
+###### POST 인자
+* id : 사용자 ID
+
+###### Status Code
+* 0 : 알 수 없는 오류
+* 100 : 성공
+* 201 : id 입력 X
+* 301 : 존재하지 않는 id
+
+###### 출력 결과 (JSON)
+* status : 실행 결과
+* size : 결과 갯수
+* list : array 형태의 {key, name}
