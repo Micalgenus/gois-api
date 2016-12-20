@@ -146,6 +146,7 @@ POST ` https://api.server/user/select `
 * status : 실행 결과
 * key : 사용자 비밀키
 * name : 이름
+* nickname : 별명
 * birth : 생일
 * sex : 성별
 * s_point : 소셜 점수
