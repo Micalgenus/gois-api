@@ -17,7 +17,10 @@ $result = $oUserDB->GetUserInfoById($id)->data;
 
 $req->key = $result[0]['u_key'];
 $req->name = $result[0]['name'];
+$req->nickname = $result[0]['nickname'];
 $req->birth = $result[0]['birth'];
+$req->s_point = $oUserDB->GetSoicalPoint($req->key)->data[0]['score'];
+$req->i_point = $oUserDB->GetInbodyPoint($req->key)->data[0]['score'];
 
 switch ($result[0]['sex']) {
   case 'M':

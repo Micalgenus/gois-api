@@ -90,7 +90,121 @@ class UserDatabase {
     return TRUE;
   }
 
-  function UpdateUserData($ukey = NULL, $id = NULL, $pw = NULL, $name = NULL, $birth = NULL, $sex = NULL) {
+  function CreateSocialPoint($ukey = NULL, $point = NULL) {
+    
+    if ($ukey == NULL || $point == NULL) {
+      response(500, "Create Social Point Error");
+    }
+    
+    $this->DB->INSERT('social_rank', 'VALUES(?, ?)',
+      array($ukey, $point));
+  }
+
+  function GetSoicalPoint($ukey = NULL) {
+    if ($ukey == NULL) {
+      response(500, "Get Social Point Error");
+    }
+    
+    $table = "social_rank";
+    $option = "WHERE u_key = ?";
+    $options = array($ukey);
+    $result = $this->DB->SELECT($table, $option, $options);
+  
+    if ($result->count == 0) {
+      $this->CreateSocialPoint($ukey, '0');
+      return $this->GetSoicalPoint($ukey);
+    }
+
+    return $result;
+  }
+
+  function UpdateSocialPoint($ukey = NULL, $point = NULL) {
+
+    if ($ukey == NULL || $point == NULL) {
+      response(500, "Update Social Point Error");
+    }
+
+    $table = "social_rank";
+    $option = "score = ? WHERE u_key = ?";
+    $options = array($point, $ukey);
+    $result = $this->DB->UPDATE($table, $option, $options);
+  }
+
+  function UpSPoint($ukey = NULL) {
+    if ($ukey == NULL) {
+      response(500, "User Update Key Error");
+    }
+
+    $user = $this->GetSoicalPoint($ukey);
+    if ($user->count == 0) {
+      $this->CreateSocialPoint($ukey, '100');
+    } else {
+      $spoint = $user->data[0]['score'];
+      $spoint += 100;
+
+      $this->UpdateSocialPoint($ukey, (string)$spoint);
+    }
+  }
+  
+  function DownSPoint($ukey = NULL) {
+    if ($ukey == NULL) {
+      response(500, "User Down Key Error");
+    }
+
+    $user = $this->GetSoicalPoint($ukey);
+    if ($user->count == 0) {
+      $this->CreateSocialPoint($ukey, '0');
+    } else {
+      $spoint = $user->data[0]['score'];
+      $spoint -= 100;
+
+      $this->UpdateSocialPoint($ukey, (string)$spoint);
+    }
+  }
+  
+  function CreateInbodyPoint($ukey = NULL, $point = NULL) {
+    
+    if ($ukey == NULL || $point == NULL) {
+      response(500, "Create Inbody Point Error");
+    }
+    
+    $this->DB->INSERT('inbody_rank', 'VALUES(?, ?)',
+      array($ukey, $point));
+  }
+
+  function GetInbodyPoint($ukey = NULL) {
+    if ($ukey == NULL) {
+      response(500, "Get Inbody Point Error");
+    }
+    
+    $table = "inbody_rank";
+    $option = "WHERE u_key = ?";
+    $options = array($ukey);
+    $result = $this->DB->SELECT($table, $option, $options);
+  
+    if ($result->count == 0) {
+      $this->CreateInbodyPoint($ukey, '0');
+      return $this->GetInbodyPoint($ukey);
+    }
+
+    return $result;
+  }
+
+  function UpdateInbodyPoint($ukey = NULL, $point = NULL) {
+
+    if ($ukey == NULL || $point == NULL) {
+      response(500, "Update Inbody Point Error");
+    }
+
+    if ((int)$point > (int)$this->GetInbodyPoint($ukey)->data[0]['score']) {
+      $table = "inbody_rank";
+      $option = "score = ? WHERE u_key = ?";
+      $options = array($point, $ukey);
+      $result = $this->DB->UPDATE($table, $option, $options);
+    }
+  }
+
+  function UpdateUserData($ukey = NULL, $id = NULL, $pw = NULL, $name = NULL, $nickname = NULL, $birth = NULL, $sex = NULL) {
 
     if ($ukey == NULL) {
       response(500, "User Update Key Error");
@@ -98,11 +212,34 @@ class UserDatabase {
 
     // key가 존재하지 않음
     if ($this->GetUserInfoByKey($ukey)->count == 0) {
-      json_return(200);
+      response(500, "User Update Key Error");
+    }
+
+    if ($id != NULL) {
+      if ($this->GetUserInfoByKey($ukey)->data[0]['agency'] == '1') {
+        $table = "user";
+        $option = "id = ?, agency = 0 WHERE u_key = ?";
+        $options = array($id, $ukey);
+        $result = $this->DB->UPDATE($table, $option, $options);
+      }
+    }
+
+    if ($pw != NULL) {
+      $table = "user";
+      $option = "pw = ? WHERE u_key = ?";
+      $options = array(hash('sha512', $pw), $ukey);
+      $result = $this->DB->UPDATE($table, $option, $options);
+    }
+
+    if ($nickname != NULL) {
+      $table = "user";
+      $option = "nickname = ? WHERE u_key = ?";
+      $options = array($nickname, $ukey);
+      $result = $this->DB->UPDATE($table, $option, $options);
     }
   }
 
-  function CreateUser($id = NULL, $pw = NULL, $name = NULL, $nickname = NULL, $birth= NULL, $sex = NULL, $agency = FALSE) {
+  function CreateUser($id = NULL, $pw = NULL, $name = NULL, $nickname = NULL, $birth= NULL, $sex = NULL, $agency = '0') {
     if ($id == NULL || $pw == NULL || $name == NULL || $nickname == NULL || $birth == NULL || $sex == NULL) {
       response(500, "Create User Error");
     }
@@ -112,7 +249,8 @@ class UserDatabase {
       $key = str_pad(rand(1, 999999999), 9, "0", STR_PAD_LEFT) . str_pad(rand(1, 999999999), 9, "0", STR_PAD_LEFT);
     } while ($this->GetUserInfoById($key)->count != 0);
 
-    $this->DB->INSERT('user', 'VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)', array($key, $id, hash('sha512', $pw), $name, $birth, $sex, $agency, $nickname, 0));
+    $this->DB->INSERT('user', 'VALUES(?, ?, ?, ?, ?, ?, ?, ?)',
+      array($key, $id, hash('sha512', $pw), $name, $birth, $sex, $agency, $nickname));
     
     return $key;
   }
@@ -132,7 +270,7 @@ class UserDatabase {
 
     $pw = rand();
 
-    return $this->CreateUser($id, $pw, $name, $nickname, $birth, $sex, TURE);
+    return $this->CreateUser($id, $pw, $name, $nickname, $birth, $sex, '1');
   }
 }
 ?>

@@ -110,14 +110,44 @@ class DB {
       $stmt->execute($option_value);
     } catch (PDOException $e) {
       // Query Error 예외처리
-      //echo 'Connection failed: ' . $e->getMessage();
+      echo 'Connection failed: ' . $e->getMessage();
       response(500, "Insert Exception");
     }
   }
 
-  function UPDATE($table = NULL, $keys = NULL, $values = NULL, $option = NULL, $option_value = NULL) {
-    if ($table == NULL || $keys == NULL || $values == NULL || $option == NULL || $option_value == NULL) {
+  function UPDATE($table = NULL, $option = NULL, $option_value = NULL) {
+    if ($table == NULL || $option == NULL || $option_value == NULL) {
       response(500, "UPDATE Query Error");
+    }
+    
+    $query = "UPDATE " . $table . " SET " . $option;
+    $stmt = $this->conn->prepare($query);
+
+    try {
+      // Execute query
+      $stmt->execute($option_value);
+    } catch (PDOException $e) {
+      // Query Error 예외처리
+      //echo 'Connection failed: ' . $e->getMessage();
+      response(500, "Update Exception");
+    }
+  }
+
+  function DELETE($table = NULL, $option = NULL, $option_value = NULL) {
+    if ($table == NULL || $option == NULL || $option_value == NULL) {
+      response(500, "DELETE Query Error");
+    }
+    
+    $query = "DELETE FROM " . $table . " " . $option;
+    $stmt = $this->conn->prepare($query);
+
+    try {
+      // Execute query
+      $stmt->execute($option_value);
+    } catch (PDOException $e) {
+      // Query Error 예외처리
+      echo 'Connection failed: ' . $e->getMessage();
+      response(500, "Delete Exception");
     }
   }
 }

@@ -66,19 +66,36 @@ if (empty($sex)) {
 if (strlen($name) > 16) {
   json_return(600);
 }
-
+/*
 if (!preg_match('/^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$', $birth)) {
   json_return(700);
 }
-
-if ($sex != "F" || $sex != "M") {
+*/
+if ($sex != "F" && $sex != "M") {
   json_return(800);
 }  
 
 // 기존 키를 이용한 계정 생성
 if (isset($key)) {
-  $info = $oUserDB->UpdateUserData();
-//  json_return(100);
+  $info = $oUserDB->GetUserInfoByKey($key);
+  if ($info->count == 0) {
+    json_return(200);
+  }
+
+  if ($info->data[0]['name'] != $name) {
+    json_return(601);
+  }
+
+  if ($info->data[0]['birth'] != $birth) {
+    json_return(701);
+  }
+
+  if ($info->data[0]['sex'] != $sex) {
+    json_return(801);
+  }
+
+  $oUserDB->UpdateUserData($key, $id, $pw, NULL, $nickname);
+  json_return(100);
 // 회원 가입
 } else if (isset($id) || isset($pw) || isset($nickname)) {
   $oUserDB->CreateUser($id, $pw, $name, $nickname, $birth, $sex);

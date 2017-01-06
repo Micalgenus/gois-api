@@ -1,4 +1,5 @@
 <?php
+
 $oAuth = $GLOBALS['oAuth'];
 
 $admin_id = $_POST['admin_id'];
@@ -18,7 +19,12 @@ if ($oAuth->GetAdminInfoById($admin_id)->count == 0) {
 }
 
 if ($oAuth->authCheck() == TRUE) {
-  json_return(100);
+  $admin = $oAuth->GetAdminInfoById($admin_id);
+
+  $obj->key = $admin->data[0]['a_key'];
+  $obj->address = $admin->data[0]['address'];
+
+  json_return(100, $obj);
 } else {
   json_return(301);
 }
